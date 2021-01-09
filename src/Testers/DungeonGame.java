@@ -27,7 +27,7 @@ public class DungeonGame{
 
 		window.setVisible(true);
 		canvas.requestFocus();
-	}
+	}//bruh
 	
 	
 	
