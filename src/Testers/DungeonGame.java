@@ -2,7 +2,7 @@ package Testers;
 
 
 import java.awt.Dimension;
-import Player.*;
+
 import javax.swing.JFrame;
 
 import processing.awt.PSurfaceAWT;
