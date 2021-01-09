@@ -2,16 +2,16 @@ package Testers;
 
 
 import processing.core.PApplet;
-import idothegoat.shapes.*;
+import gbitton299.shapes.*;
 import Player.*;
 
 public class DrawingSurface extends PApplet {
 	
 
-	Player bruh;
+	Player master;
 	
 	public DrawingSurface() {
-		bruh = new Player();
+		master = new Player();
 	}
 	
 
@@ -21,8 +21,8 @@ public class DrawingSurface extends PApplet {
 	
 
 	public void draw() {
-		background(255);
-		bruh.draw(this);
+		background(0);
+		master.draw(this);
 	
 		
 		
@@ -30,21 +30,21 @@ public class DrawingSurface extends PApplet {
 	
 	public void keyPressed() {
 		if (key == 'w') {
-			
+			master.moveUp();
 			
 		}
 		
-		if (key == 'd') {
-			
+		if (key == 'a') {
+			master.moveLeft();
 			
 		}
-		if (key == 'a') {
+		if (key == 'd') {
 			
-			
+			master.moveRight();
 		}
 		
 		if (key == 's') {
-			
+			master.moveDown();
 			
 		}
 	}
