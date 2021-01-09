@@ -2,6 +2,7 @@ package Testers;
 
 
 import processing.core.PApplet;
+import idothegoat.shapes.*;
 
 
 public class DrawingSurface extends PApplet {
