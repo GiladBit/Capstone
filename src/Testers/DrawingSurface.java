@@ -3,13 +3,15 @@ package Testers;
 
 import processing.core.PApplet;
 import idothegoat.shapes.*;
-
+import Player.*;
 
 public class DrawingSurface extends PApplet {
 	
 
+	Player bruh;
+	
 	public DrawingSurface() {
-		
+		bruh = new Player();
 	}
 	
 
@@ -19,8 +21,8 @@ public class DrawingSurface extends PApplet {
 	
 
 	public void draw() {
-		background(0);
-		
+		background(255);
+		bruh.draw(this);
 	
 		
 		
