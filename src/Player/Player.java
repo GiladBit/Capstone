@@ -2,58 +2,101 @@ package Player;
 import gbitton299.shapes.*;
 import processing.core.PApplet;
 
-public class Player {
+import javax.imageio.*;
+import java.awt.image.*;
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+
+public class Player{
 	
 	private int x,y, diameter;
-	private Circle body;
+	private int ax,ay;
+	private int health;
+	
 	public Player() {
+	
 		x = 100;
 		y = 100;
-		diameter = 20;
+		diameter = 40;
+		health = 100;
 		
 	}
 	
 	
+
+
 	public void draw(PApplet surface) {
-		surface.circle((float)x, (float)y, (float)(Math.abs(diameter)));
+		int secondX = surface.mouseX;
+		int secondY = surface.mouseY;
+		accelerate();
+		//surface.circle((float)x, (float)y, (float)(Math.abs(diameter)));
+		//surface.line(x, y, secondX, secondY);
+		
 	}
+
 	
+
 	public void act() {
 		
 	}
 
 	
 
+
+	//MOVE METHODS
+
+	
 	public void moveUp(){
-		if(isPointInside(x,10)) {
+		if(isPointInside(x,diameter + 10)) {
 			return;
 		}
-		y -= 10;
+		ay = -10;
 	}
 
 	public void moveDown(){
-		if(isPointInside(x, 800)) {
+		if(isPointInside(x, 800 + diameter * 2)) {
 			return;
 		}
-		y += 10;
+		ay = 10;
 	}
 
 	public void moveRight(){
-		if(isPointInside(1020, y)) {
+		if(isPointInside(1000 + diameter * 2, y)) {
 			return;
 		}
-		x += 10;
+		ax = 10;
 	}
 
 	public void moveLeft() {
-		if(isPointInside(10, y)) {
+		if(isPointInside(diameter / 2, y)) {
 			return;
 		}
-		x -= 10;
+		ax = -10;
 	}
 
 
 
+	public void accelerate(){
+		double amount = 0.2;
+		if(ax>0){
+			ax -= amount;
+		}
+		else if (ax<0){
+			ax += amount;
+		}
+		if(ay>0){
+			ay -= amount;
+		}
+		else if(ay<0){
+			ay += amount;
+		}
+		x += ax;
+		y += ay;
+	}
 
 
 
@@ -69,4 +112,22 @@ public class Player {
 		}
 		return isPointInside;
 	}
+
+	public int setHealth(int change) {
+		health += change;
+		if(health <= 0) {
+			System.exit(1);
+		}
+		return -1;
+	}
+
+
+	public int getX(){
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+	
 }

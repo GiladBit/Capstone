@@ -1,5 +1,5 @@
 package Player;
-
-public class Circle {
+import Testers.*;
+public class Circle extends DrawingSurface{
     
 }
