@@ -113,12 +113,11 @@ public class Player{
 		return isPointInside;
 	}
 
-	public int setHealth(int change) {
+	public void setHealth(int change) {
 		health += change;
 		if(health <= 0) {
 			System.exit(1);
 		}
-		return -1;
 	}
 
 
