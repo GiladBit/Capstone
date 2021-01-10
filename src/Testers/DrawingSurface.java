@@ -1,7 +1,7 @@
 package Testers;
 
 import javax.swing.*;
-
+import Enemies.*;
 import processing.core.*;
 import gbitton299.shapes.*;
 import Player.*;
@@ -18,6 +18,7 @@ public class DrawingSurface extends PApplet {
 	
 
 	Player master;
+	Goblin enemy;
 	private PImage photo;
 	private int counter;
 	private int repeat;
@@ -25,9 +26,9 @@ public class DrawingSurface extends PApplet {
 
 	public DrawingSurface() {
 		master = new Player();
+		enemy = new Goblin();
 		counter = 1;
 		repeat = 0;
-		
 	}
 	
 
@@ -42,6 +43,9 @@ public class DrawingSurface extends PApplet {
 
 	public void draw() {
 		
+		if(enemy.Intersects(master)) {
+			master.setHealth(-10);
+		}
 		if(keyPressed) {
 			repeat++;
 			if(repeat % 10 == 0){
@@ -54,6 +58,7 @@ public class DrawingSurface extends PApplet {
 		
 		background(129,129,129);
 		master.draw(this);
+		enemy.draw(this);
 
 		if(!facingLeft){
 			photo = loadImage("WIZARD" + counter + ".png");
@@ -63,13 +68,7 @@ public class DrawingSurface extends PApplet {
 		}
 		
 		image(photo, master.getX(), master.getY());
-		
-			
-		
-		
 	}
-
-	
 	
 	public void keyPressed() {
 		
@@ -101,9 +100,6 @@ public class DrawingSurface extends PApplet {
 		
 		
 	}
-	
-
-	
 	
 	
 	

@@ -3,6 +3,7 @@ package Testers;
 
 import java.awt.Dimension;
 import Player.*;
+import Enemies.*;
 import javax.swing.JFrame;
 
 import processing.awt.PSurfaceAWT;
