@@ -15,7 +15,11 @@ public class Player{
 	
 	private int x,y, diameter;
 	private int ax,ay;
-	private int health;
+	private double health;
+	private double secondX,secondY;
+	private boolean run = true;
+	private boolean keyReleased;
+	private int state = 0;
 	
 	public Player() {
 	
@@ -30,18 +34,28 @@ public class Player{
 
 
 	public void draw(PApplet surface) {
-		int secondX = surface.mouseX;
-		int secondY = surface.mouseY;
+		secondX = surface.mouseX;
+		secondY = surface.mouseY;
 		accelerate();
+		
 		//surface.circle((float)x, (float)y, (float)(Math.abs(diameter)));
 		//surface.line(x, y, secondX, secondY);
 		
 	}
 
+	public void keyReleased(){
+		keyReleased = true;
+	}
 	
 
 	public void act() {
-		
+		if (run) {
+			accelerate();
+			if (keyReleased) {
+				run = false;
+				keyReleased = false;
+			}
+		}
 	}
 
 	
@@ -96,11 +110,32 @@ public class Player{
 		}
 		x += ax;
 		y += ay;
+
+
+		if (run) {
+			if (state == 1) {
+				moveUp();
+			}
+			if (state == 2) {
+				moveDown();
+			}
+			if (state == 3) {
+				moveRight();
+			}
+			if (state == 4) {
+				moveLeft();
+			}
+			if (keyReleased) {
+				run = false;
+				keyReleased = false;
+			}
+		}
 	}
 
 
-
-
+	public void changeState(int changer){
+		state = changer;
+	}
 
 	//Hit Box Methods:
 
@@ -113,7 +148,7 @@ public class Player{
 		return isPointInside;
 	}
 
-	public void setHealth(int change) {
+	public void setHealth(double change) {
 		health += change;
 		if(health <= 0) {
 			System.exit(1);
@@ -129,8 +164,23 @@ public class Player{
 		return y;
 	}
 
+	public double getX2() {
+		return secondX;
+	}
+
+	public double getY2() {
+		return secondY;
+	}
+
 	public int getDiameter() {
 		return diameter;
+	}
+	public void runTrue(){
+		run = true;
+	}
+
+	public double getHealth() {
+		return health;
 	}
 	
 }
