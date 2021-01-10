@@ -24,6 +24,8 @@ public class DrawingSurface extends PApplet {
 	private PImage photo;
 	private PImage wand;
 	private PImage dungeon1;
+	private PImage goblinImg;
+	private int gcounter;
 	private int counter;
 	private int repeat;
 	private boolean facingLeft;
@@ -33,6 +35,7 @@ public class DrawingSurface extends PApplet {
 		master = new Player();
 		goblin = new Goblin();
 		counter = 1;
+		gcounter = 1;
 		repeat = 0;
 	}
 	
@@ -42,6 +45,7 @@ public class DrawingSurface extends PApplet {
 		imageMode(CENTER);
 		//size(100,100);
 		photo = loadImage("WIZARD"+1+".png");
+		goblinImg = loadImage("goblin.png");
 		wand = loadImage("wand.png");
 		dungeon1 = loadImage("dungeon1.png");
 		photo.resize(128,128);
@@ -136,6 +140,13 @@ public class DrawingSurface extends PApplet {
 				counter = 1;
 			}
 		}
+
+		if (repeat % 3 == 0) {
+			gcounter++;
+			if (gcounter > 6) {
+				gcounter = 1;
+			}
+		}
 		
 		if (!facingLeft) {
 			photo = loadImage("WIZARD" + counter + ".png");
@@ -143,6 +154,14 @@ public class DrawingSurface extends PApplet {
 			photo = loadImage("LWIZARD" + counter + ".png");
 		}
 
+		if (!facingLeft) {
+			goblinImg = loadImage("goblin" + gcounter + ".png");
+		} else {
+			goblinImg = loadImage("Lgoblin" + gcounter + ".png");
+		}
+
+
+		image(goblinImg, goblin.getX(),goblin.getY(), 48, 48);
 		image(photo, master.getX(), master.getY()-10,64,64);
 
 	}

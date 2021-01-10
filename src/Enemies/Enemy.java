@@ -14,7 +14,7 @@ public class Enemy {
 
 
     public void draw(PApplet surface) {
-        surface.circle((float) x, (float) y, (float) (Math.abs(diameter)));
+        //surface.circle((float) x, (float) y, (float) (Math.abs(diameter)));
     }
 
     public void act(Player p) {//double angle) {
