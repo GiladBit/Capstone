@@ -16,6 +16,7 @@ public class Player{
 	private int x,y, diameter;
 	private int ax,ay;
 	private int health;
+	private double secondX,secondY;
 	
 	public Player() {
 	
@@ -30,8 +31,8 @@ public class Player{
 
 
 	public void draw(PApplet surface) {
-		int secondX = surface.mouseX;
-		int secondY = surface.mouseY;
+		secondX = surface.mouseX;
+		secondY = surface.mouseY;
 		accelerate();
 		//surface.circle((float)x, (float)y, (float)(Math.abs(diameter)));
 		//surface.line(x, y, secondX, secondY);
@@ -128,6 +129,14 @@ public class Player{
 
 	public int getY() {
 		return y;
+	}
+
+	public double getX2() {
+		return secondX;
+	}
+
+	public double getY2() {
+		return secondY;
 	}
 
 	public int getDiameter() {

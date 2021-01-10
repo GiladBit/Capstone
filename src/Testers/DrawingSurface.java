@@ -5,13 +5,15 @@ import Enemies.*;
 import processing.core.*;
 import gbitton299.shapes.*;
 import Player.*;
+import java.lang.*;
+/*
 import javax.imageio.*;
 import java.awt.image.*;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+*/
 public class DrawingSurface extends PApplet {
 	
 
@@ -20,9 +22,12 @@ public class DrawingSurface extends PApplet {
 	Player master;
 	Goblin enemy;
 	private PImage photo;
+	private PImage wand;
+	private PImage dungeon1;
 	private int counter;
 	private int repeat;
 	private boolean facingLeft;
+	private double x;
 
 	public DrawingSurface() {
 		master = new Player();
@@ -37,37 +42,34 @@ public class DrawingSurface extends PApplet {
 		imageMode(CENTER);
 		size(100,100);
 		photo = loadImage("WIZARD"+1+".png");
-		photo.resize(64,64);
+		wand = loadImage("wand.png");
+		dungeon1 = loadImage("dungeon1.png");
+		photo.resize(128,128);
 	}
 	
 
 	public void draw() {
 		
-		if(enemy.Intersects(master)) {
-			master.setHealth(-10);
-		}
-		if(keyPressed) {
-			repeat++;
-			if(repeat % 10 == 0){
-				counter++;
-				if (counter > 6) {
-					counter = 1;
-				}
-			}
-		}
+		//if(enemy.Intersects(master)) {
+			//master.setHealth(-10);
+		//}
+
+		//
+	
+		pushMatrix();
 		
-		background(129,129,129);
+		image(dungeon1,500,400);
 		master.draw(this);
 		enemy.draw(this);
+		animation();
+		translate((float) master.getX(), (float) master.getY());
+		x = setUpWand(master.getX2() - master.getX(), master.getY2() - master.getY());
+		rotate((float) x);
+		image(wand, 0,0);
 
-		if(!facingLeft){
-			photo = loadImage("WIZARD" + counter + ".png");
-		}
-		else{
-			photo = loadImage("LWIZARD" + counter + ".png");
-		}
+		popMatrix();
 		
-		image(photo, master.getX(), master.getY());
+		
 	}
 	
 	public void keyPressed() {
@@ -102,6 +104,29 @@ public class DrawingSurface extends PApplet {
 	}
 	
 	
+	public void animation(){
+		
+		repeat++;
+		if (repeat % 10 == 0) {
+			counter++;
+			if (counter > 6) {
+				counter = 1;
+			}
+		}
+		
+		if (!facingLeft) {
+			photo = loadImage("WIZARD" + counter + ".png");
+		} else {
+			photo = loadImage("LWIZARD" + counter + ".png");
+		}
+
+		image(photo, master.getX(), master.getY()-10,64,64);
+
+	}
+
+	public double setUpWand(double x, double y){
+		return (Math.atan2(y,x));
+	}
 	
 	
 }
