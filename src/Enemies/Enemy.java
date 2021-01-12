@@ -11,7 +11,7 @@ public class Enemy {
 
     protected int x, y, diameter, health;
     protected int ax, ay;
-
+    boolean sawPlayer = false;
 
     public void draw(PApplet surface) {
         //surface.circle((float) x, (float) y, (float) (Math.abs(diameter)));
@@ -20,17 +20,22 @@ public class Enemy {
     public void act(Player p) {//double angle) {
         // x +=  1/(Math.cos(angle));
         // y +=  1/(Math.sin(angle));
-        if(x<p.getX()) {
-            x+=2;
+        if((Math.sqrt(Math.pow((p.getX() - x), 2) + Math.pow((p.getY() - y), 2)))<500) {
+            sawPlayer = true;
         }
-        else if(x>p.getX()) {
-             x-=2;   
-        }
-        if(y<p.getY()) {
-            y+=2;
-        }
-        else if(y>p.getY()) {
-            y-=2;
+        if(sawPlayer) {
+            if(x<p.getX()) {
+                x+=2;
+            }
+            else if(x>p.getX()) {
+                 x-=2;   
+            }
+            if(y<p.getY()) {
+                y+=2;
+            }
+            else if(y>p.getY()) {
+             y-=2;
+            }
         }
     }
 

@@ -8,8 +8,8 @@ public class Goblin extends Enemy{
 
     public Goblin() {
         super();
-		x = 200;
-		y = 200;
+		x = 700;
+		y = 700;
 		diameter = 40;
 		health = 25;
 	}
